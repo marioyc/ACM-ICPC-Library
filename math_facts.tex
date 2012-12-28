@@ -1,0 +1,154 @@
+    \subsection{Números de Catalan} están definidos por la recurrencia:
+      \begin{equation*}
+        C_{n+1} = \sum_{i=0}^nC_iC_{n-i}
+      \end{equation*}
+
+      %Una fórmula cerrada para los números de Catalán es:
+      \begin{equation*}
+        C_n = \frac{1}{n+1}\binom{2n}{n} = \binom{2n}{n} - \binom{2n}{n+1}
+      \end{equation*}
+
+    \subsection{Números de Stirling de primera clase} son el número de permutaciones de $n$ elementos con exactamente $k$ ciclos disjuntos.
+      \begin{equation*}
+        \stirlingfirst{n}{k} = (n-1)\stirlingfirst{n-1}{k} + \stirlingfirst{n-1}{k-1}
+      \end{equation*}
+
+    \subsection{Números de Stirling de segunda clase} son el número de particionar un conjunto de
+      $n$ elementos en $k$ subconjuntos no vacíos.
+      \begin{equation*}
+        \stirlingsecond{n}{k} = k\stirlingsecond{n-1}{k} + \stirlingsecond{n-1}{k-1}
+      \end{equation*}
+
+      Además:
+      \begin{equation*}
+        \stirlingsecond{n}{k} = \frac{1}{k!}\sum_{j=0}^k (-1)^{k-j} \binom{k}{j} j^n
+      \end{equation*}
+
+      \subsection{Números de Bell} cuentan el número de formas de dividir $n$ elementos en subconjuntos.
+
+      \begin{equation*}
+        \mathcal{B}_{n+1} = \sum_{k=0}^n \binom{n}{k} \mathcal{B}_k
+      \end{equation*}
+
+      \
+
+      \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+        \hline
+        x&0&1&2&3&4&5&6&7&8&9&10 \\ \hline %&9&10&11&12
+        $\mathcal{B}_x$&1&1&2&5&15&52&203&877&4.140&21.147&115.975 \\ \hline %&678.570&4.213.597
+      \end{tabular}
+
+      \subsection{Derangement} permutación que no deja ningún elemento en su lugar original
+
+      \begin{equation*}
+        !n = (n - 1)( !(n - 1) + !(n - 2) ); !1 = 0, !2 = 1
+      \end{equation*}
+
+      \begin{equation*}
+        !n = n! \sum_{k = 0}^n \frac{(-1)^k}{k!}
+      \end{equation*}
+
+    \subsection{Números armónicos}
+
+    \begin{equation*}
+     H_n = \sum_{k = 1}^n \frac{1}{k}
+    \end{equation*}
+
+    \begin{equation*}
+     \frac{1}{2n+1} < H_n - \ln n - \gamma < \frac{1}{2n}
+    \end{equation*}
+
+    \begin{equation*}
+     \gamma = 0.57721 56649 01532 86060 65120 90082 40243 10421 59335 \ldots
+    \end{equation*}
+
+    \subsection{Número de Fibonacci} $f_0 = 0$, $f_1 = 1$:
+
+    \begin{equation*}
+     f_n = \frac{1}{\sqrt{5}}(\frac{1 + \sqrt{5}}{2})^n - \frac{1}{\sqrt{5}}(\frac{1 - \sqrt{5}}{2})^n
+    \end{equation*}
+
+    \begin{equation*}
+     f_{n+1}^2 + f_n^2 = f_{2n + 1}, 
+     f_{n+2}^2 - f_n^2 = f_{2n + 2}
+    \end{equation*}
+
+    \begin{equation*}
+     f_n = \sum_{j = 0}^{\lfloor \frac{n}{2} \rfloor} \binom{n-j}{j}
+    \end{equation*}
+
+    \subsection{Sumas de combinatorios}
+
+    \begin{equation*}
+     \sum_{i = n}^m \binom{i}{n} = \binom{m + 1}{n + 1}
+    \end{equation*}
+
+    \begin{equation*}
+     \sum_{i = 0}^k \binom{n}{i} \binom{m}{k - i} = \binom{n + m}{k}
+    \end{equation*}
+
+
+    \subsection{Funciones generatrices}
+      Una lista de funciones generatrices para secuencias útiles:
+
+      \ 
+
+      \begin{tabular}{|c|c|}
+        \hline
+        $(1,1,1,1,1,1,\ldots)$ & $\frac{1}{1-z}$ \\ \hline
+        $(1,-1,1,-1,1,-1,\ldots)$ & $\frac{1}{1+z}$ \\ \hline
+        $(1,0,1,0,1,0,\ldots)$ & $\frac{1}{1-z^2}$ \\ \hline
+        $(1,0,\ldots,0,1,0,1,0,\ldots,0,1,0,\ldots)$ & $\frac{1}{1-z^2}$ \\ \hline
+        $(1,2,3,4,5,6,\ldots)$ & $\frac{1}{(1-z)^2}$ \\ \hline
+        $(1,\binom{m+1}{m},\binom{m+2}{m},\binom{m+3}{m},\ldots)$ & $\frac{1}{(1-z)^{m+1}}$ \\ \hline
+        $(1,c,\binom{c+1}{2},\binom{c+2}{3},\ldots)$ & $\frac{1}{(1-z)^c}$ \\ \hline
+        $(1,c,c^2, c^3, \ldots)$ & $\frac{1}{1-cz}$ \\ \hline
+        $(0,1,\frac{1}{2},\frac{1}{3},\frac{1}{4},\ldots)$ & $\ln \frac{1}{1-z}$ \\ \hline
+      \end{tabular}
+
+      \ 
+
+      Truco de manipulación:
+      \begin{equation*}
+        \frac{1}{1-z}G(z) = \sum_{n}\sum_{k\leq n}g_kz^n
+      \end{equation*}
+
+    \subsection{The twelvefold way} ¿Cuántas funciones $f \colon N \rightarrow X$ hay?
+
+      \ 
+
+      \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        $N$ & $X$ & Any $f$ & Injective & Surjective \\ \hline
+        dist. & dist. & $x^n$ & $(x)_n$ & $x! \stirlingsecond{n}{x}$ \\ \hline
+        indist. & dist. & $\binom{x+n-1}{n}$ & $\binom{x}{n}$ & $\binom{n-1}{n-x}$ \\ \hline
+        dist. & indist. & $\stirlingsecond{n}{1} + \ldots + \stirlingsecond{n}{x}$ & $[n \leq x]$ & $\stirlingsecond{n}{k}$ \\ \hline
+        indist. & indist. & $p_1(n) + \ldots p_x(n)$ & $[n \leq x]$ & $p_x(n)$ \\ \hline
+      \end{tabular}
+
+      \ 
+
+      Where $\binom{a}{b} = \frac{1}{b!}(a)_b $ and $p_x(n)$ is the number of ways to partition the integer $n$ using $x$ summands.
+    
+    \subsection{Teorema de Euler} si un grafo conexo, plano es dibujado sobre un plano sin intersección de aristas,
+      y siendo v el número de vértices, e el de aristas y f la cantidad de caras (regiones conectadas por aristas,
+      incluyendo la región externa e infinita), entonces
+	\begin{equation*}
+	  v-e+f = 2
+	\end{equation*}
+   
+    \subsection{Burnside's Lemma} Si X es un conjunto finito y G es un grupo de permutaciones que actúa sobre X, sean
+      $S_x = \{g \in G:g*x=x\}$ y $Fix(g) = \{x \in X:g*x=x\}$. Entonces el número de órbitas está dado por:
+	\begin{equation*}
+	  N = \frac{1}{|G|}\sum_{x \in X}|S_x| = \frac{1}{|G|}\sum_{g \in G}|Fix(g)|
+	\end{equation*}
+
+    \subsection{Ángulo entre dos vectores} Sea $\alpha$ el ángulo entre $\vec{a}$ y $\vec{b}$:
+	\begin{equation*}
+	  \cos \alpha = \frac{\vec{a} \cdot \vec{b}}{\norm{\vec{a}} \norm{\vec{b}}}
+	\end{equation*}
+   
+    \subsection{Proyección de un vector} Proyección de $\vec{a}$ sobre $\vec{b}$:
+	\begin{equation*}
+	  \text{proy} _ {\vec{b}} \vec{a} = (\frac{\vec{a} \cdot \vec{b}}{\vec{b} \cdot \vec{b}}) \vec{b}
+	\end{equation*}

@@ -1,0 +1,158 @@
+\documentclass[a4paper]{amsart}
+\usepackage[pdftex]{geometry}
+\usepackage[utf8]{inputenc}
+
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multicol}
+\usepackage{courier}
+\usepackage{fancyhdr}
+
+\lstset{language=C++}
+\lstset{columns=fullflexible}
+\lstset{basicstyle=\scriptsize\ttfamily}
+\lstset{showspaces=false}
+
+\geometry{landscape}
+\setlength{\topmargin}{-0.25in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\columnsep}{1in}
+\setlength{\columnseprule}{0.2pt}
+\textwidth 9.5in
+
+\pagestyle{fancy}
+\lhead{Universidad Nacional de Ingeniería - FIIS}
+\chead{}
+\rhead{\thepage}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+
+\newcommand{\includecpp}[3]{
+  \begin{multicols}{2}
+    [\subsection{#1}\ ]
+    \lstinputlisting[language=c++]{#2/#3}
+  \end{multicols}
+}
+
+\newcommand{\stirlingfirst}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}}
+\newcommand{\stirlingsecond}[2]{\genfrac{\{}{\}}{0pt}{}{#1}{#2}}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+
+\begin{document}
+  \thispagestyle{fancy}
+  \begin{center}
+    \Huge\textsc{ACM ICPC \\ Regional 2012}
+
+    \
+
+  \end{center}
+
+  \section{Generales}
+    \includecpp{LIS en O(nlgn)}{./general}{lis.cpp}
+    \includecpp{Problema de Josephus}{./general}{josephus.cpp}
+    \includecpp{Lectura rápida de enteros}{./general}{read_int.cpp}
+    \includecpp{Contar inversiones}{./general}{count_inv.cpp}
+    \includecpp{Números dada la suma de pares}{./general}{pair_sum.cpp}
+
+  \section{Grafos}
+    \includecpp{Ciclo de Euler}{./graphs}{euler_cycle.cpp}
+    \includecpp{Euler (Directed graph)}{./graphs}{euler_directed.cpp}    
+    %\includecpp{Union-Find}{./graphs}{union-find.cpp}
+    \includecpp{Punto de articulación}{./graphs}{articulation_point.cpp}
+    \includecpp{Detección de puentes}{./graphs}{bridges.cpp}
+    \includecpp{Componentes biconexas (Tarjan)}{./graphs}{biconnected_components.cpp}
+    \includecpp{DFS para calcular low iterativo}{./graphs}{dfs_iterativo.cpp}
+    \includecpp{Componentes fuertemente conexas (Tarjan)}{./graphs}{scc_tarjan.cpp}
+    \includecpp{Ciclo de peso promedio mínimo (Karp)}{./graphs}{karp.cpp}
+    \includecpp{Minimum cost arborescence}{./graphs}{min_cost_arborescence.cpp}
+    %\includecpp{Ordenamiento Topológico}{./graphs}{topological_sort.cpp}
+    %\includecpp{Diámetro de un árbol}{./graphs}{diameter_tree.cpp}
+    \includecpp{Stable marriage}{./graphs}{stable_marriage.cpp}
+    \includecpp{Bipartite matching (Hopcroft Karp)}{./graphs}{hopcroft_karp2.cpp}
+    \includecpp{Algoritmo húngaro}{./graphs}{hungarian.cpp}
+    \includecpp{Non bipartite matching}{./graphs}{non_bipartite_matching.cpp}
+    \includecpp{Flujo máximo}{./graphs}{ford_fulkerson.cpp}
+    \includecpp{Flujo máximo (Dinic)}{./graphs}{dinic.cpp}
+    \includecpp{Flujo máximo - Costo Mínimo (Succesive Shortest Path)}{./graphs}{mcmf_ssp.cpp}
+    \includecpp{Flujo máximo (Dinic + Lower Bounds)}{./graphs}{max_flow_lower_bound(dinic).cpp}
+    \includecpp{Corte mínimo de un grafo (Stoer - Wagner)}{./graphs}{stoer-wagner.cpp}
+    \includecpp{Graph Facts}{.}{graph_facts.txt}
+  
+  \section{Cadenas}
+    \includecpp{Knuth-Morris-Pratt}{./strings}{kmp.cpp}
+    \includecpp{Suffix array}{./strings}{dc3.cpp}
+    %\includecpp{Trie}{./strings}{trie.cpp}
+    \includecpp{Aho-Corasick}{./strings}{Aho_Corasick.cpp}
+    \includecpp{Rotación lexicográfica mínima}{./strings}{min_rot2.cpp}
+    \includecpp{Algoritmo Z}{./strings}{algoritmo_z.cpp}
+    \includecpp{Palíndromos}{./strings}{manacher.cpp}
+
+  \section{Geometría}
+    \includecpp{Punto y Línea}{./geometry}{point_and_line.cpp}
+    %\includecpp{Área y orientación de un triángulo}{./geometry}{area_and_ccw_triangle.cpp}
+    \includecpp{Ángulo entre dos vectores}{./geometry}{angle_vectors.cpp}
+    \includecpp{Líneas}{./geometry}{line.cpp}
+    \includecpp{Círculos}{./geometry}{circles.cpp}
+    \includecpp{Polígonos}{./geometry}{polygon.cpp}
+    %\includecpp{Distancia desde un punto}{./geometry}{dist_from_point.cpp}
+    %\includecpp{Intersección de líneas}{./geometry}{line_intersection.cpp}
+    %\includecpp{Fórmulas de triángulos}{./geometry}{formulas.cpp}
+    %\includecpp{Orientación de un polígono}{./geometry}{ccw_poly.cpp}
+    %\includecpp{Área con signo}{./geometry}{signed_area.cpp}
+    %\includecpp{Punto dentro de un polígono}{./geometry}{point_inside_polygon.cpp}
+    \includecpp{Convex Hull (Monotone Chain)}{./geometry}{convex_hull.cpp}
+    \includecpp{Teorema de Pick}{./geometry}{pick.cpp}
+    \includecpp{Par de puntos más cercano (Sweep Line)}{./geometry}{closest_pair.cpp}
+    \includecpp{Par de puntos más cercano (Divide and Conquer)}{./geometry}{closest_pair2.cpp}
+    \includecpp{Unión de rectángulos (Área)}{./geometry}{union_rect.cpp}
+    \includecpp{Geometría 3D}{./geometry}{3D.cpp}
+
+  \section{Matemática}
+    \includecpp{GCD extendido}{./math}{extended_gcd.cpp}
+    %\includecpp{Criba para la función phi de Euler}{./math}{phi.cpp}
+    \includecpp{Teorema chino del resto}{./math}{chinese_rem.cpp}
+    \includecpp{Número combinatorio}{./math}{comb.cpp}
+    \includecpp{Test de Miller-Rabin}{./math}{miller_rabin.cpp}
+    \includecpp{Polinomios}{./math}{polynomial.cpp}
+    \includecpp{Fast Fourier Transform}{./math}{fft2.cpp}
+    \includecpp{Stern Brocott}{./math}{stern-brocott.cpp}
+
+  \section{Estructuras de datos}
+    %\includecpp{BIT}{./data_structures}{bit.cpp}
+    %\includecpp{Range Minimum Query}{./data_structures}{rmq.cpp}
+    \includecpp{Lowest Common Ancestor}{./data_structures}{lca.cpp}
+    \includecpp{Heavy-Light Descomposition}{./data_structures}{heavy_light.cpp}
+    %\includecpp{Maximum Sum Segment Query}{./data_structures}{mssq.cpp}
+    \includecpp{Treap}{./data_structures}{treap_roy.cpp}
+  
+  \section{Matrices}
+    %\includecpp{Exponenciación de matrices}{./matrices}{mat_exp2.cpp}
+    \includecpp{Determinante}{./matrices}{mat_det.cpp}
+    \includecpp{Elimación gaussiana módulo MOD}{./matrices}{gaussian_elim.cpp}
+  
+  \section{Mathematical facts}
+  \begin{multicols}{2}
+    \input{math_facts}
+  \end{multicols}  
+
+  \enlargethispage*{\baselineskip}
+  \pagebreak
+
+  \begin{center}
+    \Huge\textsc{ACM ICPC Team Reference - Contenidos}
+
+    \vspace{0.35cm}
+
+    \huge Universidad Nacional de Ingeniería - FIIS
+
+    \vspace{0.35cm}
+
+  \end{center}
+
+  \begin{multicols}{2}
+    \tableofcontents
+  \end{multicols}
+\end{document}

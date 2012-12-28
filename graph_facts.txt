@@ -1,0 +1,21 @@
+Un grafo es bipartito si y solo si no contiene ciclos de longitud impar.
+
+Todos los arboles son bipartitos.
+
+Las aristas que forman un ciclo, se encuentran en una misma componente biconexa.
+
+Minimum Vertex Cover: para V = (S,T)
+DFS desde los vertices que no estan cubiertos por alguna arista del matching,
+para moverse:
+
+- De izq. a der. usar las aristas que no estan en el matching
+- De der. a izq. usar las aristas que estan en el matching
+
+Estan en el vertex cover(independent set):
+
+- De S los no alcanzados(los alcanzados)
+- De T los alcanzados(los no alcanzados)
+
+Para usar Teorema de Dilworth colocar tambien aristas que resulten de la transitividad.
+
+Un grafo con grados de vertices iguales a 1 o 2, consiste solo de caminos y ciclos.
