@@ -1,3 +1,5 @@
+typedef long long ptype;
+
 ptype seed = 47;
 
 ptype my_rand(){
