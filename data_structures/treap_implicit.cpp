@@ -12,11 +12,11 @@ struct item{
     ptype prior;
     item *l,*r;
     int sons;
+    
     bool rev;
     long long sum;
     
     item(){}
-    
     item(int value) : value(value), l(NULL), r(NULL), sons(0), rev(0), sum(value){
         prior = my_rand();
     }
@@ -24,10 +24,7 @@ struct item{
 
 void fix(item* t){
     if(!t) return;
-    
-    t->sons = (t->l ? t->l->sons + 1 : 0) +
-        (t->r ? t->r->sons + 1 : 0);
-    
+    t->sons = (t->l ? t->l->sons + 1 : 0) + (t->r ? t->r->sons + 1 : 0);
     t->sum = (t->l ? t->l->sum : 0) + (t->r ? t->r->sum : 0) + t->value;
 }
 
@@ -54,10 +51,9 @@ void merge(item* &t, item* l, item* r){
 }
 
 void split(item* t, item* &l, item* &r, int key, int add = 0){
-    if (!t) l = r = NULL;
+    if(!t) l = r = NULL;
     else{
         push(t);
-        
         int cur_key = add + (t->l? 1 + t->l->sons : 0);
         
         if(key <= cur_key)
@@ -69,6 +65,32 @@ void split(item* t, item* &l, item* &r, int key, int add = 0){
     }
 }
 
+void insert(item* &t, item* &it, int key, int add = 0) {
+    if(!t) t = it;
+    else{
+        push(t);
+        int cur_key = add + (t->l? 1 + t->l->sons : 0);
+        
+        if(it->prior > t->prior){
+            split(t, it->l, it->r, key, add), t = it;
+        }else{
+            if(key <= cur_key) insert(t->l, it, key, add);
+            else insert(t->r, it, key, cur_key + 1);
+        }
+        
+        fix(t);
+    }
+}
+
+char get(item* &t, int key){
+    int cur_key = (t->l? 1 + t->l->sons : 0);
+    
+    if(key == cur_key) return t->value;
+    else if(key < cur_key) return get(t->l,key);
+    else return get(t->r,key - cur_key - 1);
+}
+
+// No testeados
 void erase(item* &t, int key, int add = 0){
     int cur_key = add + (t->l? 1 + t->l->sons : 0);
     
