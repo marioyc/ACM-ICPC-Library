@@ -16,6 +16,20 @@ struct point{
     }
 };
 
+double cross(point a, point b){
+    return a.x * b.y - a.y * b.x;
+}
+
+bool polar_cmp(point a, point b){
+    if(a.x >= 0 && b.x < 0) return true;
+    if(a.x < 0 && b.x >= 0) return false;
+    if(a.x == 0 && b.x == 0){
+        if(a.y > 0 && b.y < 0) return false;
+        if(a.y < 0 && b.y > 0) return true;
+    }
+    return cross(a,b) > 0;
+}
+
 struct line{
     point p1,p2;
     
