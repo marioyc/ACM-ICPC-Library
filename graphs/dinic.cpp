@@ -1,20 +1,18 @@
 struct flow_graph{
-    int MAX_V,E,s,t,head,tail;
-    int *cap,*to,*next,*last,*dist,*q,*now;
+    static const int MAX_V = 500;
+    static const int MAX_E = 10000;
     
-    flow_graph(){}
+    int E,s,t,head,tail;
+    int cap[2 * MAX_E],to[2 * MAX_E],next[2 * MAX_E],last[MAX_V],dist[MAX_V],q[MAX_V],now[MAX_V];
     
-    flow_graph(int V, int MAX_E){
-        MAX_V = V; E = 0;
-        cap = new int[2*MAX_E], to = new int[2*MAX_E], next = new int[2*MAX_E];
-        last = new int[MAX_V], q = new int[MAX_V];
-        dist = new int[MAX_V], now = new int[MAX_V];
-        fill(last,last+MAX_V,-1);
+    flow_graph(){
+        E = 0;
+        memset(last,-1,sizeof last);
     }
     
     void clear(){
-        fill(last,last+MAX_V,-1);
         E = 0;
+        memset(last,-1,sizeof last);
     }
     
     void add_edge(int u, int v, int uv){
@@ -23,34 +21,34 @@ struct flow_graph{
     }
 	
     bool bfs(){
-        fill(dist,dist+MAX_V,-1);
+        memset(dist,-1,sizeof dist);
         head = tail = 0;
 		
         q[tail] = t; ++tail;
         dist[t] = 0;
 		
-        while(head<tail){
+        while(head < tail){
             int v = q[head]; ++head;
             
-            for(int e = last[v];e!=-1;e = next[e]){
-                if(cap[e^1]>0 && dist[to[e]]==-1){
+            for(int e = last[v];e != -1;e = next[e]){
+                if(cap[e^1] > 0 && dist[to[e]] == -1){
                     q[tail] = to[e]; ++tail;
                     dist[to[e]] = dist[v]+1;
                 }
             }
         }
         
-        return dist[s]!=-1;
+        return dist[s] != -1;
     }
 	
     int dfs(int v, int f){
-        if(v==t) return f;
+        if(v == t) return f;
 		
-        for(int &e = now[v];e!=-1;e = next[e]){
-            if(cap[e]>0 && dist[to[e]]==dist[v]-1){
+        for(int &e = now[v];e != -1;e = next[e]){
+            if(cap[e] > 0 && dist[to[e]] == dist[v]-1){
                 int ret = dfs(to[e],min(f,cap[e]));
 				
-                if(ret>0){
+                if(ret > 0){
                     cap[e] -= ret;
                     cap[e^1] += ret;
                     return ret;
@@ -61,16 +59,16 @@ struct flow_graph{
         return 0;
     }
 	
-    long long max_flow(int source, int sink){
+    int max_flow(int source, int sink){
         s = source; t = sink;
-        long long f = 0,df;
+        int f = 0,df;
 		
         while(bfs()){
-            for(int i = 0;i<MAX_V;++i) now[i] = last[i];
+            for(int i = 0;i <= sink;++i) now[i] = last[i];
 			
             while(true){
                 df = dfs(s,INT_MAX);
-                if(df==0) break;
+                if(df == 0) break;
                 f += df;
             }
         }
