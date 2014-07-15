@@ -1,45 +1,48 @@
-#define MAX_V 100000
+#define MAXV 1000
 
-vector<int> L[MAX_V],C[MAX_V];
-int V,dfsPos,dfsNum[MAX_V],lowlink[MAX_V],num_scc,comp[MAX_V];
-bool in_stack[MAX_V];
+vector<int> L[MAXV];
 stack<int> S;
+bool in_stack[MAXV];
+int low[MAXV],curh,cont_scc,id_scc[MAXV];
 
-void tarjan(int v){
-    dfsNum[v] = lowlink[v] = dfsPos++;
-    S.push(v); in_stack[v] = true;
+void tarjan(int cur){
+    S.push(cur);
+    in_stack[cur] = true;
+    low[cur] = ++curh;
     
-    for(int i = L[v].size()-1;i>=0;--i){
-        int w = L[v][i];
-        if(dfsNum[w]==-1){
-            tarjan(w);
-            lowlink[v] = min(lowlink[v],lowlink[w]);
-        }else if(in_stack[w]) lowlink[v] = min(lowlink[v], lowlink[w]);
+    for(int i = L[cur].size() - 1,to;i >= 0;--i){
+        to = L[cur][i];
+        
+        if(low[to] == -1){
+            tarjan(to);
+            low[cur] = min(low[cur],low[to]);
+        }else if(in_stack[to]){
+            low[cur] = min(low[cur],low[to]);
+        }
     }
     
-    if(dfsNum[v]==lowlink[v]){
-        vector<int> &com = C[num_scc];
-        com.clear();
-        int aux;
+    if(low[cur] == curh){
+        int nxt;
         
         do{
-            aux = S.top(); S.pop();
-            comp[aux] = num_scc;
-            com.push_back(aux);
-            in_stack[aux] = false;
-        }while(aux!=v);
+            nxt = S.top();
+            S.pop();
+            in_stack[nxt] = false;
+            id_scc[nxt] = cont_scc;
+        }while(nxt != cur);
         
-        ++num_scc;
+        ++cont_scc;
     }
+    
+    --curh;
 }
 
-void build_scc(int _V){
-    V = _V;
-    memset(dfsNum,-1,sizeof(dfsNum));
-    memset(in_stack,false,sizeof(in_stack));
-    dfsPos = num_scc = 0;
+void build_scc(int V){
+    memset(low,-1,sizeof low);
+    memset(in_stack,false,sizeof in_stack);
+    curh = cont_scc = 0;
     
-    for(int i = 0;i<V;++i)
-        if(dfsNum[i]==-1)
+    for(int i = 0;i < V;++i)
+        if(low[i] == -1)
             tarjan(i);
 }
