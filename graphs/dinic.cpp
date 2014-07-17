@@ -59,12 +59,12 @@ struct flow_graph{
         return 0;
     }
 	
-    int max_flow(int source, int sink){
+    int max_flow(int source, int sink, int V){
         s = source; t = sink;
         int f = 0,df;
 		
         while(bfs()){
-            for(int i = 0;i <= sink;++i) now[i] = last[i];
+            for(int i = 0;i < V;++i) now[i] = last[i];
 			
             while(true){
                 df = dfs(s,INT_MAX);
