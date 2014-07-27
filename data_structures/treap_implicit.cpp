@@ -82,7 +82,7 @@ void insert(item* &t, item* &it, int key, int add = 0) {
     }
 }
 
-char get(item* &t, int key){
+int get(item* &t, int key){
     int cur_key = (t->l? 1 + t->l->sons : 0);
     
     if(key == cur_key) return t->value;
