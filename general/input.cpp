@@ -67,4 +67,4 @@ struct Scanner{
     }
 };
 
-//Leer varios carácteres indicados : scanf("%*[\r\n ]");
+//Leer varios caracteres indicados : scanf("%*[\r\n ]");

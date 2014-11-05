@@ -53,7 +53,7 @@
   \section{Generales}
     \includecpp{LIS en O(nlgn)}{./general}{lis.cpp}
     \includecpp{Problema de Josephus}{./general}{josephus.cpp}
-    \includecpp{Lectura rápida de enteros}{./general}{read_int.cpp}
+    \includecpp{Lectura rápida de enteros}{./general}{input.cpp}
     \includecpp{Contar inversiones}{./general}{count_inv.cpp}
     \includecpp{Números dada la suma de pares}{./general}{pair_sum.cpp}
 
@@ -65,28 +65,28 @@
     \includecpp{Detección de puentes}{./graphs}{bridges.cpp}
     \includecpp{Componentes biconexas (Tarjan)}{./graphs}{biconnected_components.cpp}
     \includecpp{DFS para calcular low iterativo}{./graphs}{dfs_iterativo.cpp}
-    \includecpp{Componentes fuertemente conexas (Tarjan)}{./graphs}{scc_tarjan.cpp}
+    \includecpp{Componentes fuertemente conexas (Tarjan)}{./graphs/scc}{tarjan.cpp}
     \includecpp{Ciclo de peso promedio mínimo (Karp)}{./graphs}{karp.cpp}
-    \includecpp{Minimum cost arborescence}{./graphs}{min_cost_arborescence.cpp}
-    %\includecpp{Ordenamiento Topológico}{./graphs}{topological_sort.cpp}
+	\includecpp{Minimum cost arborescence}{./graphs}{min_cost_arborescence.cpp}
+	%\includecpp{Ordenamiento Topológico}{./graphs}{topological_sort.cpp}
     %\includecpp{Diámetro de un árbol}{./graphs}{diameter_tree.cpp}
     \includecpp{Stable marriage}{./graphs}{stable_marriage.cpp}
     \includecpp{Bipartite matching (Hopcroft Karp)}{./graphs}{hopcroft_karp2.cpp}
     \includecpp{Algoritmo húngaro}{./graphs}{hungarian.cpp}
     \includecpp{Non bipartite matching}{./graphs}{non_bipartite_matching.cpp}
-    \includecpp{Flujo máximo}{./graphs}{ford_fulkerson.cpp}
-    \includecpp{Flujo máximo (Dinic)}{./graphs}{dinic.cpp}
+    \includecpp{Flujo máximo}{./graphs/max_flow}{ford_fulkerson.cpp}
+    \includecpp{Flujo máximo (Dinic)}{./graphs/max_flow}{dinic.cpp}
     \includecpp{Flujo máximo - Costo Mínimo (Succesive Shortest Path)}{./graphs}{mcmf_ssp.cpp}
-    \includecpp{Flujo máximo (Dinic + Lower Bounds)}{./graphs}{max_flow_lower_bound(dinic).cpp}
+    \includecpp{Flujo máximo (Dinic + Lower Bounds)}{./graphs/max_flow}{lower_bound_dinic.cpp}
     \includecpp{Corte mínimo de un grafo (Stoer - Wagner)}{./graphs}{stoer-wagner.cpp}
     \includecpp{Graph Facts}{.}{graph_facts.txt}
   
   \section{Cadenas}
     \includecpp{Knuth-Morris-Pratt}{./strings}{kmp.cpp}
-    \includecpp{Suffix array}{./strings}{dc3.cpp}
+    \includecpp{Suffix array}{./strings/suffix_array}{dc3.cpp}
     %\includecpp{Trie}{./strings}{trie.cpp}
     \includecpp{Aho-Corasick}{./strings}{Aho_Corasick.cpp}
-    \includecpp{Rotación lexicográfica mínima}{./strings}{min_rot2.cpp}
+    \includecpp{Rotación lexicográfica mínima}{./strings}{mininum_rotation.cpp}
     \includecpp{Algoritmo Z}{./strings}{algoritmo_z.cpp}
     \includecpp{Palíndromos}{./strings}{manacher.cpp}
 
@@ -94,7 +94,7 @@
     \includecpp{Punto y Línea}{./geometry}{point_and_line.cpp}
     %\includecpp{Área y orientación de un triángulo}{./geometry}{area_and_ccw_triangle.cpp}
     \includecpp{Ángulo entre dos vectores}{./geometry}{angle_vectors.cpp}
-    \includecpp{Líneas}{./geometry}{line.cpp}
+    \includecpp{Líneas}{./geometry}{line_functions.cpp}
     \includecpp{Círculos}{./geometry}{circles.cpp}
     \includecpp{Polígonos}{./geometry}{polygon.cpp}
     %\includecpp{Distancia desde un punto}{./geometry}{dist_from_point.cpp}
@@ -130,8 +130,8 @@
   
   \section{Matrices}
     %\includecpp{Exponenciación de matrices}{./matrices}{mat_exp2.cpp}
-    \includecpp{Determinante}{./matrices}{mat_det.cpp}
-    \includecpp{Elimación gaussiana módulo MOD}{./matrices}{gaussian_elim.cpp}
+    \includecpp{Determinante}{./matrices}{matrix_determinant.cpp}
+    \includecpp{Elimación gaussiana módulo MOD}{./matrices}{gaussian_elimination.cpp}
   
   \section{Mathematical facts}
   \begin{multicols}{2}
