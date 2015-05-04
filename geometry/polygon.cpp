@@ -16,20 +16,22 @@ bool ccw(const vector<point> &poly){
     return ccw(poly[ind-1],poly[ind],poly[(ind+1)%n]);
 }
 
-bool isInConvex(vector <Point> &A, const Point &P){
-  int n = A.size(), lo = 1, hi = A.size() - 1;
-  
-  if(area(A[0], A[1], P) <= 0) return 0;
-  if(area(A[n-1], A[0], P) <= 0) return 0;
-  
-  while(hi - lo > 1){
-    int mid = (lo + hi) / 2;
+bool isInConvex(vector <point> &A, const point &P){
+    // polygon should be in ccw order
+    // if(!ccw(A)) reverse(A.begin(),A.end());
+    int n = A.size(), lo = 1, hi = A.size() - 1;
     
-    if(area(A[0], A[mid], P) > 0) lo = mid;
-    else hi = mid;
-  }
-  
-  return area(A[lo], A[hi], P) > 0;
+    if(area(A[0], A[1], P) <= 0) return 0;
+    if(area(A[n-1], A[0], P) <= 0) return 0;
+    
+    while(hi - lo > 1){
+        int mid = (lo + hi) / 2;
+        
+        if(area(A[0], A[mid], P) > 0) lo = mid;
+        else hi = mid;
+    }
+    
+    return area(A[lo], A[hi], P) > 0;
 }
 
 bool PointInsidePolygon(const point &P, const vector<point> &poly){
