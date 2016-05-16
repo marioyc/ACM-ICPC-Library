@@ -1,3 +1,6 @@
+const int B = 100000;
+const int Blen = 5;
+
 struct BigInteger{
     vector<long long> d;
     int sign;
