@@ -6,7 +6,7 @@ int ext_gcd(int  a, int b, int &x, int &y){
         return a;
     }
 
-    int g = extGcd(b,a % b,y,x);
+    int g = ext_gcd(b,a % b,y,x);
     y -= a / b * x;
     return g;
 }
@@ -14,7 +14,7 @@ int ext_gcd(int  a, int b, int &x, int &y){
 // ASSUME: gcd(a, m) == 1
 int mod_inv(int a, int m){
     int x,y;
-    extGcd(a, m, x, y);
+    ext_gcd(a, m, x, y);
     return (x % m + m) % m;
 }
 
