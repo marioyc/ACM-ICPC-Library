@@ -22,6 +22,7 @@ struct SternBrocot{
     // search for closest approximation of p / q
     // choose the smallest if two are equally close
     pair<T, T> search(T p, T q, T lnum = 0, T lden = 1, T rnum = 1, T rden = 1){
+        assert(p >= 0 && p <= q);
         while(true){
             T mi_num = lnum + rnum;
             T mi_den = lden + rden;
