@@ -1,30 +1,27 @@
-#define MAX_L 70
-int f[MAX_L];
-
-void prefixFunction(string P){
-    int n = P.size(), k = 0;
-    f[0] = 0;
-	
-    for(int i=1;i<n;++i){
-        while(k>0 && P[k]!=P[i]) k = f[k-1];
-        if(P[k]==P[i]) ++k;
-        f[i] = k;
+vector<int> prefix_function(string &s){
+    int n = (int)s.length();
+    vector<int> pi(n);
+    for(int i = 1;i < n;++i){
+        int j = pi[i - 1];
+        while(j > 0 && s[i] != s[j]) j = pi[j-1];
+        if(s[i] == s[j]) ++j;
+        pi[i] = j;
     }
+    return pi;
 }
 
 
-int KMP(string P, string T){
-    int n = P.size(), L = T.size(), k = 0, ans = 0;
-    
-    for(int i=0;i<L;++i){
-        while(k>0 && P[k]!=T[i]) k = f[k-1];
-        if(P[k]==T[i]) ++k;
-        
-        if(k==n){
-            ++ans;
-            k = f[k-1];
+// number of times P is found int T
+int kmp_match(string &P, string &T){
+    auto pi = prefix_function(P);
+    int n = P.size(),nt = T.size(),k = 0,nmatch = 0;
+    for(int i = 0;i < nt;++i){
+        while(k > 0 && T[i] != P[k]) k = pi[k - 1];
+        if(P[k] == T[i]) ++k;
+        if(k == n){
+            ++nmatch;
+            k = pi[k - 1];
         }
     }
-    
-    return ans;
+    return nmatch;
 }
