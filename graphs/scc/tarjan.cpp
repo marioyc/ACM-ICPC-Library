@@ -1,48 +1,44 @@
-#define MAXV 1000
+// https://codeforces.com/blog/entry/131187
+// sample submission: https://codeforces.com/contest/2115/submission/322462326
+
+const int MAXV = 600005;
 
 vector<int> L[MAXV];
 stack<int> S;
-bool in_stack[MAXV];
-int low[MAXV],curh,cont_scc,id_scc[MAXV];
+bool claimed[MAXV];
+int dfs_t,dfs_order[MAXV],rep_dfs_order[MAXV],cont_scc,id_scc[MAXV];
 
 void tarjan(int cur){
     S.push(cur);
-    in_stack[cur] = true;
-    low[cur] = ++curh;
-    
-    for(int i = L[cur].size() - 1,to;i >= 0;--i){
-        to = L[cur][i];
-        
-        if(low[to] == -1){
+    dfs_order[cur] = rep_dfs_order[cur] = dfs_t++;
+
+    for(int to : L[cur]){
+        if(dfs_order[to] == -1){
             tarjan(to);
-            low[cur] = min(low[cur],low[to]);
-        }else if(in_stack[to]){
-            low[cur] = min(low[cur],low[to]);
+        }
+        if(!claimed[to]){
+            rep_dfs_order[cur] = min(rep_dfs_order[cur], rep_dfs_order[to]);
         }
     }
-    
-    if(low[cur] == curh){
+
+    if(rep_dfs_order[cur] == dfs_order[cur]){
         int nxt;
-        
         do{
             nxt = S.top();
             S.pop();
-            in_stack[nxt] = false;
+            claimed[nxt] = true;
             id_scc[nxt] = cont_scc;
         }while(nxt != cur);
-        
         ++cont_scc;
     }
-    
-    --curh;
 }
 
 void build_scc(int V){
-    memset(low,-1,sizeof low);
-    memset(in_stack,false,sizeof in_stack);
-    curh = cont_scc = 0;
-    
+    fill(dfs_order, dfs_order + V, -1);
+    fill(claimed, claimed + V, false);
+    dfs_t = cont_scc = 0;
+
     for(int i = 0;i < V;++i)
-        if(low[i] == -1)
+        if(dfs_order[i] == -1)
             tarjan(i);
 }
