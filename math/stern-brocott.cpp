@@ -50,3 +50,30 @@ struct SternBrocot{
         return {-1, -1};
     }
 };
+
+// Minimum q for which an integer p exists such that
+// a / b < p / q < c / d
+// Example submission: https://atcoder.jp/contests/abc408/submissions/66357598
+ll solve(ll a, ll b, ll c, ll d){
+    ll pl = 0,ql = 1,pr = 1,qr = 0;
+    while(true){
+        ll pmi = (pl + pr);
+        ll qmi = (ql + qr);
+        if(c * qmi <= d * pmi){
+            // left k times
+            // (k pl + pr) / (k ql + qr)
+            auto k = (d * pr - c * qr) / (c * ql - d * pl);
+            pr = k * pl + pr;
+            qr = k * ql + qr;
+        }else if(b * pmi <= a * qmi){
+            // right k times
+            // (pl + k pr) / (ql + k qr)
+            auto k = (a * ql - b * pl) / (b * pr - a * qr);
+            pl = pl + k * pr;
+            ql = ql + k * qr;
+        }else{
+            return qmi;
+        }
+    }
+    return -1;
+}
