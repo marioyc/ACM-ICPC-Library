@@ -1,3 +1,6 @@
+// Disjoint Set Union: https://cp-algorithms.com/data_structures/disjoint_set_union.html
+// sample submission: https://codeforces.com/contest/87/submission/323062839
+
 struct UnionFind{
     vector<int> par,sz;
 
