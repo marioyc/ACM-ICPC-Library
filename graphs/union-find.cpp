@@ -1,21 +1,26 @@
-#define MAX_SIZE 100000
-int parent[MAX_SIZE],rank[MAX_SIZE];
+struct UnionFind{
+    vector<int> par,sz;
 
-void Make_Set(const int x){
-    parent[x] = x; rank[x] = 0;
-}
-
-int Find(const int x){
-    if(parent[x] != x) parent[x] = Find(parent[x]);
-    return parent[x];
-}
-
-void Union(const int x, const int y){
-    int PX = Find(x),PY = Find(y);
-    
-    if(rank[PX] > rank[PY]) parent[PY] = PX;
-    else{
-        parent[PX] = PY;
-        if(rank[PX]==rank[PY]) ++rank[PY];
+    UnionFind(int n){
+        par = vector<int>(n);
+        sz = vector<int>(n, 1);
+        iota(par.begin(), par.end(), 0);
     }
-}
+
+    int find(int x){
+        if(par[x] != x) par[x] = find(par[x]);
+        return par[x];
+    }
+
+    bool unite(int x, int y){
+        int px = find(x);
+        int py = find(y);
+        if(px != py){
+            if(sz[px] > sz[py]) swap(px, py);
+            par[px] = py;
+            sz[py] += sz[px];
+            return true;
+        }
+        return false;
+    }
+};
